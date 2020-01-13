@@ -1,0 +1,14 @@
+<h1>Chat away...</h1><br/>
+
+<%= form_for @message, remote: true  do |f| %>
+  <%= f.text_area :content, id:'text_field',
+                  placeholder: 'Type something here',
+                  class: 'textarea',
+                  autofocus: true %><br/>
+  <%= f.submit 'Post', class: 'button is-large is-primary' %>
+<% end %>
+<hr>
+
+<div id="msg">
+  <h3>CONNECTED.</h3><hr>
+</div>
