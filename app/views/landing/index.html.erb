@@ -1,4 +1,4 @@
-<h1>Chat away...</h1><br/>
+<h1>Welcome, <%= @user.first_name.capitalize %>, chat away...</h1><br/>
 
 <%= form_for @message, remote: true  do |f| %>
   <%= f.text_area :content, id:'text_field',

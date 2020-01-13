@@ -1,20 +1,23 @@
 class MessagesController < ApplicationController
 
   def new
-    @message = Message.new
+    @message = current_user.messages.new
   end
 
   def create
-    @message = Message.create(message_params)
+    @user = current_user
+    @message = current_user.messages.create(message_params)
     if @message.save
       ActionCable.server.broadcast 'room_channel',
-                                   content: @message.content
+                                   content: @message,
+                                   user: @user.user_name
+
     end
   end
 
   private
 
   def message_params
-    params.require(:message).permit(:content)
+    params.require(:message).permit(:content, :created_at)
   end
 end

@@ -11,6 +11,7 @@ consumer.subscriptions.create("RoomChannel", {
 
   received: function (data) {
     console.log('received data');
+    console.log(data)
     let currentTime = new Date(),
         hours = currentTime.getHours(),
         minutes = currentTime.getMinutes()
@@ -21,7 +22,7 @@ consumer.subscriptions.create("RoomChannel", {
 
     let time = hours + ":" + minutes
 
-    $('#msg').append(`<div class='message'>${data.content} ${time} </div>`);
+    $('#msg').append(`<div class='message'><h3 class='tag is-large is-primary'>${data.user}</h3> ${data.content.content} ${time} </div>`);
     $('#text_field').val('');
   }
 });
